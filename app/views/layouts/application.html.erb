@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CodingForum <%= yield :head %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"><%= image_tag("logo.png", width: 100, :class=>"img-fluid") %></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <% if logged_in? %>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav navbar-flex">
+              <li class="nav-item inline-items">
+                <span class="nav-link">Signed in as: <a href="/users/<%= current_user.id %>"><%= current_user.username %></a></span>
+                <a class="nav-link" aria-current="page" href="<%=logout_path%>">Logout</a>
+              </li>
+              <%= yield :navlinks %>
+            </ul>
+          </div>
+        <% else %>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="<%=login_path%>">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<%=new_user_path%>">Sign Up</a>
+              </li>
+
+            </ul> 
+          </div>
+        <% end %>
+      </div>
+    </nav>
+    <main class="pt-5">
+      <div class="container pt-5">
+        <%= yield %>
+      </div>
+    </main>
+  </body>
+</html>

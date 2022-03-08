@@ -1,0 +1,40 @@
+$h1-font-size: 2rem;
+$h2-font-size: 1rem;
+$primary: #5C4CE3;
+
+.bg-primary.text-white {
+  a {
+    color: white;
+    &:hover {
+      color: inherit;
+    }
+  }
+}
+
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons';
+
+
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: white;
+  color: white;
+  box-shadow: 5px 0 5px -3px black;
+  .navbar-flex {
+    @media (min-width: 768px) {
+      display: flex;
+      width: 100%;
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: space-between;
+      .inline-items {
+        .nav-link {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

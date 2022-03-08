@@ -1,0 +1,14 @@
+<% content_for :navlinks do %>
+  <li class="nav-item">
+    <% if logged_in? %>
+      <%= link_to "New Thread", new_topic_path, class: "btn btn-primary" %>
+    <% end %>
+  </li>
+<% end %>
+
+
+<h1>Threads</h1>
+<div class="mt-3">
+  <%= render @topics %>
+</div>
+

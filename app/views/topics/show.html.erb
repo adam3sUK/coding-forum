@@ -1,0 +1,12 @@
+<div class="card card-body bg-primary text-white mb-4">
+  <h1><%= @topic.title %></h1>
+  <p>Created <%= @topic.created_at.strftime("%d %B %G") %> by <%= link_to @topic.user.username, user_path(@topic.user)%></p>
+</div>
+
+<%= render @topic.posts %>
+
+<% if logged_in? %>
+  <%= render 'posts/form' %>
+<% else %>
+<p>Please login to join the conversation</p>
+<% end %>

@@ -1,0 +1,18 @@
+<div class="card mb-1">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-4 col-lg-2">
+        <h2>
+          <%= link_to post.user.username, user_path(post.user) %>
+        </h2>
+        <p>Posts: <%= post.user.posts.count %><br/>
+        Joined: <%= post.user.created_at.strftime("%d %B %G") %></p>
+      </div>
+      <div class="col-md-8 col-lg-10">
+        <p>
+          <%= post.body %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

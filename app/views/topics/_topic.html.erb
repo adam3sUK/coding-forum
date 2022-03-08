@@ -1,0 +1,19 @@
+<div class="card mb-1">
+  <div class="card-body">
+    <div class="row align-items-center">
+      <div class="col-sm-8 col-lg-10">
+        <h2><%= link_to topic.title, topic%></h2>
+        <p>Created <%= topic.created_at.strftime("%d %B %G") %> by <%= link_to topic.user.username, user_path(topic.user)%></p>
+      </div>
+      <div class="col-sm-2 col-lg-1 text-center">
+        <%= topic.view %>
+        <i class="bi bi-eye-fill"></i>
+      </div>
+      <div class="col-sm-2 col-lg-1 text-center">
+        <%= topic.posts.count %>
+        <i class="bi bi-chat-left-fill"></i>
+      </div>
+    </div>
+
+  </div>
+</div>
