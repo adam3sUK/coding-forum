@@ -13,11 +13,15 @@
 </ul>
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    
+    <% if @user.avatar.attached? %>
+      <%= image_tag @user.avatar, :class => "img-fluid" %>
+    <% end %>
     <h1><%= @user.username %></h1>
   </div>
   <div class="tab-pane fade" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">
     <h2>Recent posts</h2>
-    <%= render partial: "posts/post-thread", collection: @user.posts, as: :post %>
+    <%= render partial: "posts/post-thread", collection: @user.posts.last(5), as: :post %>
   </div>
 </div>
 <% if current_user == @user %>
