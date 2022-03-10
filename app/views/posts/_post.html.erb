@@ -1,7 +1,7 @@
-<div class="card mb-1">
-  <div class="card-body">
-    <div class="row">
-      <div class="col-md-4 col-lg-2">
+<div class="mb-3">
+  <div class="row">
+    <div class="col-md-4 col-lg-2">
+      <div class="p-3">
         <% if post.user.avatar.attached? %>
           <%= image_tag post.user.avatar, :class => "img-fluid mb-2" %>
         <% end %>
@@ -11,8 +11,10 @@
         <p>Posts: <%= post.user.posts.count %><br/>
         Joined: <%= post.user.created_at.strftime("%d %B %G") %></p>
       </div>
-      <div class="col-md-8 col-lg-10">
-        <div class="content-spaced">
+    </div>
+    <div class="col-md-8 col-lg-10">
+      <div class="card full-height">
+        <div class="content-spaced card-body">
           <div>
               <%= render partial: "posts/likes", locals: {post: post} %>
             <p>
@@ -20,7 +22,8 @@
             </p>
           </div>
           <div class="text-end">
-            <%= button_to 'Like', post_likes_path(post), method: :post, class: "btn btn-sm btn-primary" %>
+            <small class="text-muted">Posted: <%= post.created_at.strftime("%d %B %G") %></small>
+            <%= button_to 'Like', post_likes_path(post), method: :post, class: "inline btn btn-sm btn-primary" %>
           </div>
         </div>
       </div>

@@ -47,3 +47,25 @@ $primary: #5C4CE3;
   justify-content: space-between;
   height: 100%;
 }
+
+.card.full-height {
+  height: 100%;
+}
+
+.text-end .button_to {
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+.likes span {
+  &:after {
+    display: inline-block;
+    position: relative;
+    content: ",";
+  }
+  &:last-of-type {
+    &:after {
+      display: none;
+    }
+  }
+}
