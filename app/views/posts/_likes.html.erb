@@ -1,0 +1,19 @@
+<% case post.likes.count
+  when 0 %>
+  <% when 1 %>
+    <p class="likes">
+        <%= link_to post.likes.first.user.username, user_path(post.likes.first.user) %> liked this
+    </p> 
+  <% when 2 %>
+    <p class="likes">
+        <% post.likes.first(2).each do |like| %>      
+          <span><%= link_to like.user.username, user_path(like.user) %></span>
+        <% end %> likes this
+    </p>
+  <% else %>
+    <p class="likes">
+        <% post.likes.first(2).each do |like| %>      
+          <span><%= link_to like.user.username, user_path(like.user) %></span>
+        <% end %> and <%= post.likes.count - 2 %> more likes this
+    </p>
+<% end %>

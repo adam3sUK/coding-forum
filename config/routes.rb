@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     resources :posts
   end
 
+  resources :posts do
+    resources :likes
+  end
+
   # User routes
   resources :users, only: [:new, :create, :edit, :update, :show, :destroy]
 

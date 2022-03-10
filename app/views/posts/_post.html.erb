@@ -12,9 +12,35 @@
         Joined: <%= post.user.created_at.strftime("%d %B %G") %></p>
       </div>
       <div class="col-md-8 col-lg-10">
-        <p>
-          <%= post.body %>
-        </p>
+        <div class="content-spaced">
+          <div>
+            <% case post.likes.count
+              when 0 %>
+              <% when 1 %>
+                <p class="likes">
+                    <%= link_to post.likes.first.user.username, user_path(post.likes.first.user) %> liked this
+                </p> 
+              <% when 2 %>
+                <p class="likes">
+                    <% post.likes.first(2).each do |like| %>      
+                      <span><%= link_to like.user.username, user_path(like.user) %></span>
+                    <% end %> likes this
+                </p>
+              <% else %>
+                <p class="likes">
+                    <% post.likes.first(2).each do |like| %>      
+                      <span><%= link_to like.user.username, user_path(like.user) %></span>
+                    <% end %> and <%= post.likes.count - 2 %> more likes this
+                </p>
+            <% end %>
+            <p>
+              <%= post.body %>
+            </p>
+          </div>
+          <div class="text-end">
+            <%= button_to 'Like', post_likes_path(post), method: :post, class: "btn btn-sm btn-primary" %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

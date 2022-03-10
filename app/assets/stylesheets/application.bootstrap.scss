@@ -22,6 +22,7 @@ $primary: #5C4CE3;
   width: 100%;
   background: white;
   color: white;
+  z-index: 200;
   box-shadow: 5px 0 5px -3px black;
   .navbar-flex {
     @media (min-width: 768px) {
@@ -37,4 +38,12 @@ $primary: #5C4CE3;
       }
     }
   }
+}
+
+
+.content-spaced {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
