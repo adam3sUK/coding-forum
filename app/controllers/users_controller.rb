@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       if @user.update(user_params)
         redirect_to @user
       else
-        render :eidt, status: :unprocessable_entity
+        render :edit, status: :unprocessable_entity
       end
     end
   end
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :avatar)
+    params.require(:user).permit(:username, :password, :avatar, :bio)
   end
 
   def find_user

@@ -1,29 +1,41 @@
 <% content_for :head do %>
   - <%= @user.username %>'s profile
 <% end %>
-
+<div class="profile">
+  <% if @user.avatar.attached? %>
+    <%= image_tag @user.avatar, :class => "img-fluid rounded" %>
+  <% end %>
+  <h1 class="mt-2"><%= @user.username %></h1>
+  <p>Member since: <%= @user.created_at.strftime("%d %B %G") %> <br/>
+  Posts: <%= @user.posts.count %></p>
+  <% if current_user == @user %>
+    <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary mt-2 mb-5" %>
+  <% end %>
+</div>
 
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
   <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Profile</button>
+    <button class="nav-link active" id="pills-posts-tab" data-bs-toggle="pill" data-bs-target="#pills-posts" type="button" role="tab" aria-controls="pills-posts" aria-selected="false">Post History</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="pills-posts-tab" data-bs-toggle="pill" data-bs-target="#pills-posts" type="button" role="tab" aria-controls="pills-posts" aria-selected="false">Post History</button>
+    <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">About</button>
   </li>
 </ul>
-<div class="tab-content" id="pills-tabContent">
-  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-    
-    <% if @user.avatar.attached? %>
-      <%= image_tag @user.avatar, :class => "img-fluid" %>
+<div class="tab-content mt-3" id="pills-tabContent">
+  <div class="tab-pane fade  show active" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">
+    <% if @user.posts %>
+      <%= render partial: "posts/post-thread", collection: @user.posts.last(5), as: :post %>
+    <% else %>
+      <p>Looks like this user hasn't posted anything.</p>
     <% end %>
-    <h1><%= @user.username %></h1>
   </div>
-  <div class="tab-pane fade" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">
-    <h2>Recent posts</h2>
-    <%= render partial: "posts/post-thread", collection: @user.posts.last(5), as: :post %>
+  <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    <% if @user.bio %>
+      <p><%= @user.bio %></p>
+    <% else %>
+      <p>This user does not yet have a bio.</p>
+    <% end %>
   </div>
+
 </div>
-<% if current_user == @user %>
-  <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary mt-2" %>
-<% end %>

@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
   before_action :find_user
 
   def index
-    @topics = Topic.all
+    @topics = Topic.order(:name).page params[:page]
   end
 
   def show
