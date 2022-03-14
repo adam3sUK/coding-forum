@@ -7,8 +7,10 @@
 <% end %>
 
 
-<h1>Threads</h1>
-<div class="mt-3">
-  <%= paginate @topics %>
-</div>
+  <h1>Threads</h1>
+  <div class="mt-3">
+    <%= paginate @topics %>
+    <%= render @topics %>
+    <%= paginate @topics %>
+  </div>
 

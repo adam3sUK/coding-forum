@@ -2,11 +2,14 @@ class TopicsController < ApplicationController
   before_action :find_user
 
   def index
-    @topics = Topic.order(:name).page params[:page]
+    @topics = Topic.all
+    @topics = Kaminari.paginate_array(@topics).page(params[:page]).per(10)
   end
 
   def show
     @topic = Topic.find(params[:id])
+    @posts = @topic.posts
+    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(10)
     @topic.increment!(:view)
   end
 
