@@ -1,17 +1,22 @@
 <div class="card mb-1">
   <div class="card-body">
     <div class="row align-items-center">
-      <div class="col-sm-8 col-lg-10">
+      <div class="col-sm-6 col-lg-8">
         <h2><%= link_to topic.title, topic%></h2>
-        <p>Created <%= topic.created_at.strftime("%d %B %G") %> by <%= link_to topic.user.username, user_path(topic.user)%></p>
+        <p><small>Created <%= topic.created_at.strftime("%d %B %G") %> by <%= link_to topic.user.username, user_path(topic.user)%></small></p>
       </div>
-      <div class="col-sm-2 col-lg-1 text-center">
+      <div class="col-sm-2 col-lg-1 text-end">
         <%= topic.view %>
         <i class="bi bi-eye-fill"></i>
       </div>
-      <div class="col-sm-2 col-lg-1 text-center">
+      <div class="col-sm-2 col-lg-1 text-end">
         <%= topic.posts.count %>
         <i class="bi bi-chat-left-fill"></i>
+      </div>
+      <div class="col-sm-2 col-lg-2">
+        <p class="text-end"><small>
+        <%= topic.updated_at.strftime("%d/%m/%G") %> <br/>
+        <%= link_to topic.posts.last.user.username, user_path(topic.posts.last.user)%></small></p>
       </div>
     </div>
 

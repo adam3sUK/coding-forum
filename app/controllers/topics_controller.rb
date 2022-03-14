@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
   before_action :find_user
 
   def index
-    @topics = Topic.all
+    @topics = Topic.all.order(updated_at: :desc)
     @topics = Kaminari.paginate_array(@topics).page(params[:page]).per(10)
   end
 
