@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  - <%= @topic.title %>
+<% end %>
+
 <div class="card card-body bg-primary text-white mb-4">
   <h1><%= @topic.title %></h1>
   <p>Created <%= @topic.created_at.strftime("%d %B %G") %> by <%= link_to @topic.user.username, user_path(@topic.user)%></p>
