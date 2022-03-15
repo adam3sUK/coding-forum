@@ -48,6 +48,12 @@ $primary: #5C4CE3;
   height: 100%;
 }
 
+.card.bg-primary {
+  p {
+    margin-bottom: 0;
+  }
+}
+
 .profile {
   img {
     height: 180px;
@@ -63,15 +69,19 @@ $primary: #5C4CE3;
   margin-left: 1rem;
 }
 
-.likes span {
-  &:after {
-    display: inline-block;
-    position: relative;
-    content: ",";
-  }
-  &:last-of-type {
+.likes {
+  font-style: italic;
+  font-size: $small-font-size;
+  span {
     &:after {
-      display: none;
+      display: inline-block;
+      position: relative;
+      content: ",";
+    }
+    &:last-of-type {
+      &:after {
+        display: none;
+      }
     }
   }
 }
