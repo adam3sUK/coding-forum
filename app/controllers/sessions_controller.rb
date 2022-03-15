@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
 
     if !!@user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
+      @user.touch(:last_login)
       redirect_to root_path
     else
       message = "Login failed! Please make sure username and password are correct."

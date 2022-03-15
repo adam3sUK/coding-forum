@@ -1,19 +1,26 @@
 <% content_for :head do %>
   - <%= @user.username %>'s profile
 <% end %>
-<div class="profile">
-  <% if @user.avatar.attached? %>
-    <%= image_tag @user.avatar, :class => "img-fluid rounded" %>
-  <% end %>
-  <h1 class="mt-2"><%= @user.username %></h1>
-  <p>Member since: <%= @user.created_at.strftime("%d %B %G") %> <br/>
-  Posts: <%= @user.posts.count %></p>
-  <% if current_user == @user %>
-    <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary mt-2 mb-5" %>
-  <% end %>
+<div class="profile row">
+  <div class="col-sm-3">
+    <% if @user.avatar.attached? %>
+      <%= image_tag @user.avatar, :class => "img-fluid rounded" %>
+    <% end %>
+  </div>
+  <div class="col-sm-9">
+    <h1><%= @user.username %></h1>
+    <p>Member since: <%= @user.created_at.strftime("%d %B %G") %> <br/>
+    Posts: <%= @user.posts.count %> <br/>
+    Last login: <%= @user.last_login.strftime("%d %B %G - %H:%M") %></p>
+    <% if current_user == @user %>
+      <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary mt-2 mb-5" %>
+    <% end %>
+  </div>
+
+
 </div>
 
-<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+<ul class="nav nav-pills my-4" id="pills-tab" role="tablist">
 
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="pills-posts-tab" data-bs-toggle="pill" data-bs-target="#pills-posts" type="button" role="tab" aria-controls="pills-posts" aria-selected="false">Post History</button>
@@ -31,11 +38,16 @@
     <% end %>
   </div>
   <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-    <% if @user.bio %>
-      <p><%= @user.bio %></p>
-    <% else %>
-      <p>This user does not yet have a bio.</p>
-    <% end %>
+    <div class="card mt-2">
+      <div class="card-body">
+        <% if @user.bio %>
+          <p><%= @user.bio %></p>
+        <% else %>
+          <p>This user does not yet have a bio.</p>
+        <% end %>
+      </div>
+    </div>
+
   </div>
 
 </div>
