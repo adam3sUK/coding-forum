@@ -8,7 +8,7 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
-    @posts = @topic.posts
+    @posts = @topic.posts.order(created_at: :desc).reverse
     @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(10)
     @topic.increment!(:view)
   end
@@ -34,16 +34,23 @@ class TopicsController < ApplicationController
   end
 
   def edit
-    @topic = Topic.find(params[:id])
+    if @user.id == Topic.find(params[:id]).user.id
+      @topic = Topic.find(params[:id])
+    else
+      redirect_to topic_path(Topic.find(params[:id]))
+    end
   end
 
   def update
     @topic = Topic.find(params[:id])
-
-    if @topic.update(topic_params)
-      redirect_to @topic
+    if @user.id == @topic.user.id
+      if @topic.update(topic_params)
+        redirect_to @topic
+      else
+        render :edit, status: :unprocessable_entity
+      end
     else
-      render :edit, status: :unprocessable_entity
+      redirect_to topic_path(@topic)
     end
   end 
 
