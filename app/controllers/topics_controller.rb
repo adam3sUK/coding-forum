@@ -60,7 +60,7 @@ class TopicsController < ApplicationController
     end
 
     def post_params
-      params.require(:topic).permit(:body)
+      params.require(:topic).permit(:content)
     end
 
     def find_user

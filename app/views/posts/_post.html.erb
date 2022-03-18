@@ -18,11 +18,11 @@
           <div>
               <%= render partial: "posts/likes", locals: {post: post} %>
             <p>
-              <%= post.body %>
+              <%= post.content %>
             </p>
           </div>
           <div class="text-end">
-            <% if post.created_at == post.updated_at %>
+            <% if post.created_at.strftime("%d %B %G - %H:%M") == post.updated_at.strftime("%d %B %G - %H:%M") %>
               <small class="text-muted">Posted: <%= post.created_at.strftime("%d %B %G") %></small>
             <% else %>
               <small class="text-muted">Last edited: <%= post.updated_at.strftime("%d %B %G") %></small>

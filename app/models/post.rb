@@ -4,4 +4,5 @@ class Post < ApplicationRecord
   paginates_per 2
 
   has_many :likes, dependent: :destroy
+  has_rich_text :content
 end
