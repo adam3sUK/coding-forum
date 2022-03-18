@@ -22,7 +22,14 @@
             </p>
           </div>
           <div class="text-end">
-            <small class="text-muted">Posted: <%= post.created_at.strftime("%d %B %G") %></small>
+            <% if post.created_at == post.updated_at %>
+              <small class="text-muted">Posted: <%= post.created_at.strftime("%d %B %G") %></small>
+            <% else %>
+              <small class="text-muted">Last edited: <%= post.updated_at.strftime("%d %B %G") %></small>
+            <% end %>
+            <% if current_user == post.user %>
+              <%= link_to 'Edit', edit_topic_post_path(post.topic, post), class: "inline btn btn-sm btn-primary ml-3" %>
+            <% end %>
             <%= button_to 'Like', post_likes_path(post), method: :post, class: "inline btn btn-sm btn-primary" %>
           </div>
         </div>
