@@ -1,24 +1,26 @@
 <% content_for :head do %>
   - <%= @user.username %>'s profile
 <% end %>
-<div class="profile row">
-  <div class="col-sm-3">
-    <% if @user.avatar.attached? %>
-      <%= image_tag @user.avatar, :class => "img-fluid rounded" %>
-    <% end %>
+<div class="bg-light p-3">
+  <div class="profile row">
+    <div class="col-sm-2">
+      <% if @user.avatar.attached? %>
+        <%= image_tag @user.avatar, :class => "img-fluid rounded" %>
+      <% end %>
+    </div>
+    <div class="col-sm-10">
+      <h1><%= @user.username %></h1>
+      <p>Member since: <%= @user.created_at.strftime("%d %B %G") %> <br/>
+      Posts: <%= @user.posts.count %> <br/>
+      Last login: <%= @user.last_login.strftime("%d %B %G - %H:%M") %></p>
+      <% if current_user == @user %>
+        <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary btn-outline mt-2 mb-5" %>
+      <% end %>
+    </div>
   </div>
-  <div class="col-sm-9">
-    <h1><%= @user.username %></h1>
-    <p>Member since: <%= @user.created_at.strftime("%d %B %G") %> <br/>
-    Posts: <%= @user.posts.count %> <br/>
-    Last login: <%= @user.last_login.strftime("%d %B %G - %H:%M") %></p>
-    <% if current_user == @user %>
-      <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary mt-2 mb-5" %>
-    <% end %>
-  </div>
-
-
 </div>
+
+<hr class="my-5" />
 
 <ul class="nav nav-pills my-4" id="pills-tab" role="tablist">
 
