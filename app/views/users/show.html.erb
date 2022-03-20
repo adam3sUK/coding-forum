@@ -12,7 +12,8 @@
       <h1><%= @user.username %></h1>
       <p>Member since: <%= @user.created_at.strftime("%d %B %G") %> <br/>
       Posts: <%= @user.posts.count %> <br/>
-      Last login: <%= @user.last_login.strftime("%d %B %G - %H:%M") %></p>
+      
+      Last login: <%= time_ago_in_words(@user.last_login) %> ago</p>
       <% if current_user == @user %>
         <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary btn-outline mt-2 mb-5" %>
       <% end %>

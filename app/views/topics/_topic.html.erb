@@ -15,7 +15,7 @@
       </div>
       <div class="col-sm-2 col-lg-2">
         <p class="text-end"><small>
-        <%= topic.posts.last.updated_at.strftime("%d/%m/%G") %> <br/>
+        <%= time_ago_in_words(topic.posts.last.updated_at) %> ago<br/>
         <%= link_to topic.posts.last.user.username, user_path(topic.posts.last.user)%></small></p>
       </div>
     </div>
