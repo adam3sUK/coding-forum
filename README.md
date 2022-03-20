@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Forum app, where users can create topics and post in those topics. Features user accounts, rich text content and pagination.
 
-Things you may want to cover:
+## Ruby version
 
-* Ruby version
+This app uses Ruby version 3.0.0 and Rails version 7.0.2.3
 
-* System dependencies
+## Set up
 
-* Configuration
+Mac OS
 
-* Database creation
+For the app to work in local host, users will need to run "bundle" to install gem dependencies. "bin/rails db:migrate" to set up the database. Then "bin/dev" to run Puma.
 
-* Database initialization
+## Deployment
 
-* How to run the test suite
+The app is currently deployed at: <a href="https://evening-journey-09939.herokuapp.com/">https://evening-journey-09939.herokuapp.com/</a>
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Some disaprity between development and deplyed versions, image storage and actiontext csss, not yet fully integrated on deployed app.
