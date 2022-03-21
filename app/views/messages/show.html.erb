@@ -1,0 +1,30 @@
+<div class="mb-3">
+  <div class="row">
+    <div class="col-md-4 col-lg-2">
+      <div class="p-3">
+        <% if @message.user.avatar.attached? %>
+          <%= image_tag @message.user.avatar, :class => "img-fluid mb-2" %>
+        <% end %>
+        <h2>
+          <%= link_to @message.user.username, user_path(@message.user) %>
+        </h2>
+        <p>Posts: <%= @message.user.posts.count %><br/>
+        Joined: <%= @message.user.created_at.strftime("%d %B %G") %></p>
+      </div>
+    </div>
+    <div class="col-md-8 col-lg-10">
+      <div class="card full-height">
+        <div class="content-spaced card-body">
+          <div>
+            <h2>
+              <%= @message.title %>
+            </h2>
+            <p>
+              <%= @message.body %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

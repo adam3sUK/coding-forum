@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   # User routes
   resources :users, only: [:new, :create, :edit, :update, :show, :destroy] do
-    resources :inboxes
+    resources :inboxes, :messages
   end
 
   # Sessions routes

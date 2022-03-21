@@ -17,6 +17,9 @@
       <% if current_user == @user %>
         <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary btn-outline mt-2 mb-5" %>
       <% end %>
+      <% if current_user != @user %>
+        <%= link_to "Message", new_user_message_path(@user), class: "btn btn-primary btn-outline mt-2 mb-5" %>
+      <% end %>
     </div>
   </div>
 </div>
@@ -39,7 +42,7 @@
 </ul>
 <div class="tab-content mt-3" id="pills-tabContent">
   <div class="tab-pane fade  show active" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">
-    <% if @user.posts.count != 0 %>
+    <% unless @user.posts.count == 0 %>
       <%= render partial: "posts/post-thread", collection: @user.posts.last(5), as: :post %>
     <% else %>
       <p>Looks like this user hasn't posted anything.</p>
@@ -60,7 +63,11 @@
     <div class="tab-pane fade" id="pills-inbox" role="tabpanel" aria-labelledby="pills-inbox-tab">
       <div class="card mt-2">
         <div class="card-body">
-            <p><%= @user.username %>'s inbox, id <%= @user.inbox.id %></p>
+            <% unless @user.inbox.messages.count == 0 %>
+              <%= render @user.inbox.messages %>
+            <% else %>
+              <p><%= @user.username %>'s inbox, id <%= @user.inbox.id %></p>
+            <% end %>
         </div>
       </div>
     </div>
