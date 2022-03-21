@@ -31,10 +31,15 @@
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">About</button>
   </li>
+  <% if current_user == @user %>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="pills-inbox-tab" data-bs-toggle="pill" data-bs-target="#pills-inbox" type="button" role="tab" aria-controls="pills-inbox" aria-selected="true">Inbox</button>
+    </li>
+  <% end %>
 </ul>
 <div class="tab-content mt-3" id="pills-tabContent">
   <div class="tab-pane fade  show active" id="pills-posts" role="tabpanel" aria-labelledby="pills-posts-tab">
-    <% if @user.posts %>
+    <% if @user.posts.count != 0 %>
       <%= render partial: "posts/post-thread", collection: @user.posts.last(5), as: :post %>
     <% else %>
       <p>Looks like this user hasn't posted anything.</p>
@@ -50,7 +55,14 @@
         <% end %>
       </div>
     </div>
-
   </div>
-
+  <% if current_user == @user %>
+    <div class="tab-pane fade" id="pills-inbox" role="tabpanel" aria-labelledby="pills-inbox-tab">
+      <div class="card mt-2">
+        <div class="card-body">
+            <p><%= @user.username %>'s inbox, id <%= @user.inbox.id %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>

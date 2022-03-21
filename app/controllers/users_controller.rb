@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       @user.touch(:last_login)
+      Inbox.create(user_id: @user.id)
       redirect_to root_path
     else
       render :new

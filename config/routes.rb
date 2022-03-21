@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   end
 
   # User routes
-  resources :users, only: [:new, :create, :edit, :update, :show, :destroy]
+  resources :users, only: [:new, :create, :edit, :update, :show, :destroy] do
+    resources :inboxes
+  end
 
   # Sessions routes
   get '/login', to: 'sessions#login'
