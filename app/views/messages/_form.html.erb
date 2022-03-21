@@ -10,7 +10,7 @@
 
     <div class="form-group mt-4">
       <%= form.label :body, class:"control-label"%><br>
-      <%= form.text_field :body, class:"form-control" %>
+      <%= form.text_area :body, class:"form-control" %>
       <% current_user.errors.full_messages_for(:body).each do |message| %>
         <div><%= message %></div>
       <% end %>

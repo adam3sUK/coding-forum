@@ -64,9 +64,22 @@
       <div class="card mt-2">
         <div class="card-body">
             <% unless @user.inbox.messages.count == 0 %>
-              <%= render @user.inbox.messages %>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Date</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%= render @user.inbox.messages.order(created_at: :desc) %>
+                </tbody>
+              </table>
+              
             <% else %>
-              <p><%= @user.username %>'s inbox, id <%= @user.inbox.id %></p>
+              <p>No messages.</p>
             <% end %>
         </div>
       </div>
