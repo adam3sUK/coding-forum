@@ -12,15 +12,20 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @message = @user.inbox.messages.create(message_params.merge(user_id: @current_user.id))
-    redirect_to user_path(@current_user)
+    if @current_user
+      @user = User.find(params[:user_id])
+      @message = @user.inbox.messages.create(message_params.merge(user_id: @current_user.id))
+      redirect_to user_path(@current_user)
+    else
+      @user = User.find(params[:user_id])
+      redirect_to user_path(@user)
+    end
   end
 
   def destroy
     @message = Message.find(params[:id])
     @message.destroy
-    redirect_to user_path(@user)
+    redirect_to user_path(@current_user)
   end
 
   private

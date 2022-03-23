@@ -30,7 +30,9 @@
             <% if current_user == post.user %>
               <%= link_to 'Edit', edit_topic_post_path(post.topic, post), class: "inline btn btn-sm btn-primary ml-3" %>
             <% end %>
+            <% if logged_in? %>
             <%= button_to 'Like', post_likes_path(post), method: :post, class: "inline btn btn-sm btn-primary" %>
+            <% end %>
           </div>
         </div>
       </div>
