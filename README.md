@@ -1,6 +1,6 @@
 # README
 
-Forum app, where users can create topics and post in those topics. Features user accounts, rich text content and pagination.
+Forum app, where users can create topics and post in those topics. Features: user accounts, rich text content, pagination, direct messaging, user avatars.
 
 ## Ruby version
 
@@ -16,4 +16,4 @@ For the app to work in local host, users will need to run "bundle" to install ge
 
 The app is currently deployed at: <a href="https://evening-journey-09939.herokuapp.com/">https://evening-journey-09939.herokuapp.com/</a>
 
-Some disaprity between development and deplyed versions, image storage and actiontext csss, not yet fully integrated on deployed app.
+Some disparity between development and deployed versions, image storage and actiontext css, not yet fully integrated on deployed app.
