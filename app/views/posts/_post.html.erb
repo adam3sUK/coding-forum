@@ -22,11 +22,7 @@
             </p>
           </div>
           <div class="text-end">
-            <% if post.created_at.strftime("%d %B %G - %H:%M") == post.updated_at.strftime("%d %B %G - %H:%M") %>
-              <small class="text-muted">Posted: <%= time_ago_in_words(post.created_at) %> ago</small>
-            <% else %>
-              <small class="text-muted">Last edited: <%= time_ago_in_words(post.updated_at) %> ago</small>
-            <% end %>
+            <%= render partial: "posts/created", locals: {post: post} %>
             <% if current_user == post.user %>
               <%= link_to 'Edit', edit_topic_post_path(post.topic, post), class: "inline btn btn-sm btn-primary ml-3" %>
             <% end %>

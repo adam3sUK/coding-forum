@@ -1,0 +1,5 @@
+<% if post.created_at.strftime("%d %B %G - %H:%M") == post.updated_at.strftime("%d %B %G - %H:%M") %>
+  <small class="text-muted">Posted: <%= time_ago_in_words(post.created_at) %> ago</small>
+<% else %>
+  <small class="text-muted">Last edited: <%= time_ago_in_words(post.updated_at) %> ago</small>
+<% end %>
