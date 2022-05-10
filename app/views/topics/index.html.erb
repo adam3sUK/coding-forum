@@ -1,32 +1,32 @@
 <% content_for :navlinks do %>
-  <li class="nav-item">
-    <% if logged_in? %>
+  <% if logged_in? %>
+    <li class="nav-item">
       <%= link_to "New Thread", new_topic_path, class: "btn btn-primary" %>
-    <% end %>
-  </li>
+    </li>
+  <% end %>
 <% end %>
 
 
   <h1>Threads</h1>
-<div class="card thread-header px-3 py-2 bg-primary text-white mb-2 mt-4">
-  <div class="row align-items-center">
-    <div class="col-sm-6 col-lg-8">
-      <p><strong>Title</strong></p>
-    </div>
-    <div class="col-sm-2 col-lg-1 text-end">
-      <p><strong>Views</strong></p>
-    </div>
-    <div class="col-sm-2 col-lg-1 text-end">
-      <p><strong>Posts</strong></p>
-    </div>
-    <div class="col-sm-2 col-lg-2 text-end">
-      <p><strong>Latest post</strong></p>
+  <div class="card thread-header px-3 py-2 bg-primary text-white mb-2 mt-4">
+    <div class="row align-items-center">
+      <div class="col-sm-6 col-lg-8">
+        <p><strong>Title</strong></p>
+      </div>
+      <div class="col-sm-2 col-lg-1 text-end">
+        <p><strong>Views</strong></p>
+      </div>
+      <div class="col-sm-2 col-lg-1 text-end">
+        <p><strong>Posts</strong></p>
+      </div>
+      <div class="col-sm-2 col-lg-2 text-end">
+        <p><strong>Latest post</strong></p>
+      </div>
     </div>
   </div>
-</div>
-<div class="mt-3">
-  <%= paginate @topics %>
-  <%= render @topics %>
-  <%= paginate @topics %>
-</div>
+  <div class="mt-3">
+    <%= paginate @topics %>
+    <%= render @topics %>
+    <%= paginate @topics %>
+  </div>
 

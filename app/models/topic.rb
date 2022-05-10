@@ -1,7 +1,6 @@
 class Topic < ApplicationRecord
   validates :title, presence: true, length: { minimum: 8 }
   belongs_to :user
-  has_many :posts
+  has_many :posts, dependent :destroy
 
-  paginates_per 5
 end
